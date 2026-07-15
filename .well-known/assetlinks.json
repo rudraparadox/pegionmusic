@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.example.pegion_music",
+    "sha256_cert_fingerprints": ["63:AA:C6:69:DD:DD:00:74:92:ED:D2:3D:6D:2C:F3:DC:A2:E8:95:8A:A1:35:CC:4E:40:AA:22:4E:31:89:E0:60"]
+  }
+}]

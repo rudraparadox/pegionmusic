@@ -1,31 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opening Pegion Music...</title>
     <style>
-        body { background-color: #140F11; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center;}
-        .btn { background-color: #E5B5C8; color: black; padding: 12px 24px; border-radius: 24px; text-decoration: none; font-weight: bold; margin-top: 20px; display: inline-block;}
+        body {
+            background-color: #140F11;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .btn {
+            background-color: #E5B5C8;
+            color: #140F11;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
-    <div>
-        <h2>Opening Pegion Music...</h2>
-        <p>If the app doesn't open automatically, click the button below.</p>
-        <a id="open-app-btn" class="btn" href="#">Open App</a>
-    </div>
+    <h2>Opening Pegion Music...</h2>
+    <p>If the app doesn't open automatically, tap the button below.</p>
+    
+    <a href="#" id="openAppBtn" class="btn">Open in App</a>
 
     <script>
-        // Extract the song ID from the URL (e.g. /song/12345)
+        // Get the current URL path
         const path = window.location.pathname; 
         
-        // Build the unblockable custom URI scheme
-        const customSchemeUrl = "pegionmusic://pegionmusic.vercel.app" + path;
-        
-        // Update the button link
-        document.getElementById("open-app-btn").href = customSchemeUrl;
-
-        // Instantly force the app to open!
-        window.location.href = customSchemeUrl;
+        // If the path looks like /song/VIDEO_ID
+        if (path.startsWith('/song/')) {
+            const videoId = path.split('/')[2];
+            
+            // Build the custom scheme link that is guaranteed to open the app
+            const appLink = "pegionmusic://song/" + videoId;
+            
+            // 1. Update the button to use the custom scheme
+            document.getElementById("openAppBtn").href = appLink;
+            
+            // 2. Try to automatically redirect immediately!
+            window.location.replace(appLink);
+        }
     </script>
 </body>
 </html>

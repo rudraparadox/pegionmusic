@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opening Pegion Music...</title>
+    <style>
+        body { background-color: #140F11; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center;}
+        .btn { background-color: #E5B5C8; color: black; padding: 12px 24px; border-radius: 24px; text-decoration: none; font-weight: bold; margin-top: 20px; display: inline-block;}
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Opening Pegion Music...</h2>
+        <p>If the app doesn't open automatically, click the button below.</p>
+        <a id="open-app-btn" class="btn" href="#">Open App</a>
+    </div>
+
+    <script>
+        // Extract the song ID from the URL (e.g. /song/12345)
+        const path = window.location.pathname; 
+        
+        // Build the unblockable custom URI scheme
+        const customSchemeUrl = "pegionmusic://pegionmusic.vercel.app" + path;
+        
+        // Update the button link
+        document.getElementById("open-app-btn").href = customSchemeUrl;
+
+        // Instantly force the app to open!
+        window.location.href = customSchemeUrl;
+    </script>
+</body>
+</html>
